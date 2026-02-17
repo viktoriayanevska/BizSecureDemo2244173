@@ -1,0 +1,28 @@
+﻿@model BizSecureDemo.ViewModels.LoginVm
+@{
+    ViewData["Title"] = "Вход";
+}
+<div class="card p-3 shadow-sm" style="max-width:520px;">
+    <form asp-action="Login" method="post">
+        @Html.AntiForgeryToken()
+        <div class="mb-2">
+            <label class="form-label">Email</label>
+            <input class="form-control" asp-for="Email" />
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Password</label>
+            <input class="form-control" asp-for="Password" type="password" />
+        </div>
+        <div class="text-danger small">
+            @foreach (var e in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <div>@e.ErrorMessage</div>
+            }
+        </div>
+
+        <button class="btn btn-success w-100" type="submit">Login</button>
+    </form>
+    <hr />
+    <a asp-action="Register">Нямаш акаунт? Register</a>
+</div>
+

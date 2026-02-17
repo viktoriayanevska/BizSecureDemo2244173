@@ -1,0 +1,89 @@
+﻿@model List<BizSecureDemo.Models.Order>
+@{
+    ViewData["Title"] = "Landing";
+}
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="card p-3 shadow-sm">
+            <div class="mb-2">Вие сте влезнали като: <b>@User.Identity?.Name</b></div>
+
+            <form asp-controller="Orders" asp-action="Create" method="post">
+                @Html.AntiForgeryToken()
+                <div class="mb-2">
+                    <label class="form-label">Заглавие</label>
+                    <input class="form-control" name="Title" required />
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Сума</label>
+                    <input class="form-control" name="Amount" required />
+                </div>
+                <button class="btn btn-primary w-100" type="submit">Създай запис</button>
+            </form>
+
+            <hr />
+            <div class="small text-muted">
+                Учебна демонстрация: ще покажем “пробив” през страницата Детайли.
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card p-3 shadow-sm">
+            <h5>Моите записи</h5>
+            @if (!Model.Any())
+            {
+                <div class="text-muted">Нямате записи още.</div>
+            }
+            else
+            {
+                <ul class="list-group">
+                    @foreach (var o in Model)
+                    {
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div><b>#@o.Id</b> – @o.Title</div>
+                            <a class="btn btn-sm btn-outline-primary"
+                               asp-controller="Orders"
+                               asp-action="Details"
+                               asp-route-id="@o.Id">Детайли</a>
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+</div> 
+<div class="card p-3 shadow-sm mt-3">
+    <h5>Публични поръчки (демо)</h5>
+    @{
+        var allOrders = ViewBag.AllOrders as IEnumerable<BizSecureDemo.Models.Order>;
+        //обърнете внимание, че тук трябва да добавите Вашият факултетен номер или както се казва Вашият проект
+    }
+    @if (allOrders == null || !allOrders.Any())
+    {
+        <div class="text-muted">Няма записи.</div>
+    }
+    else
+    {
+        <ul class="list-group">
+            @foreach (var o in allOrders)
+            {
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <b>#@o.Id</b>
+                        <span class="text-muted small">(UserId: @o.UserId)</span>
+                    </div>
+
+                    <a class="btn btn-sm btn-outline-primary"
+                       asp-controller="Orders"
+                       asp-action="Details"
+                       asp-route-id="@o.Id">
+                        Детайли
+                    </a>
+                </li>
+            }
+        </ul>
+    }
+</div>
+
+

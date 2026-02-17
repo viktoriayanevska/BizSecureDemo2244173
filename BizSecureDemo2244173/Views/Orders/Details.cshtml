@@ -1,0 +1,14 @@
+﻿@model BizSecureDemo.Models.Order
+@{
+    ViewData["Title"] = "Детайли (преди fix)";
+}
+
+<div class="card p-3 shadow-sm" style="max-width:680px;">
+    <div><b>Order ID:</b> @Model.Id</div>
+    <div><b>Собственик (UserId):</b> @Model.UserId</div>
+    <div><b>Заглавие:</b> @Model.Title</div>
+    <div><b>Сума:</b> @Model.Amount</div>
+    <hr />
+    <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index">Назад</a>
+</div>
+

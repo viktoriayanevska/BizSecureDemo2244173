@@ -1,0 +1,33 @@
+﻿<!doctype html>
+<html lang="bg">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - BizSecureDemo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">BizSecureDemo</a>
+            <div class="d-flex gap-2">
+                @if (User.Identity?.IsAuthenticated ?? false)
+                {
+                    <a class="btn btn-outline-light btn-sm" asp-controller="Home" asp-action="Index">Landing</a>
+                    <a class="btn btn-outline-light btn-sm" asp-controller="Account" asp-action="Logout">Logout</a>
+                }
+                else
+                {
+                    <a class="btn btn-outline-light btn-sm" asp-controller="Account" asp-action="Login">Login</a>
+                }
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-4">
+        <h2 class="mb-3">@ViewData["Title"]</h2>
+        @RenderBody()
+    </main>
+</body>
+</html>
+
