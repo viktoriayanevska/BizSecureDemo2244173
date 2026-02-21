@@ -23,9 +23,9 @@ public class HomeController : Controller
 
         var allOrders = await _db.Orders
             .OrderByDescending(o => o.Id)
-            .ToListAsync(); // Чете всички поръчки от базата
+            .ToListAsync(); // Чете всички поръчки от   базата
 
-        ViewBag.AllOrders = allOrders; //Подава всички поръчки към View-то през ViewBag. ViewBag е „чанта“ за допълнителни данни към View-то. Така View-то може да показва и публичен списък от поръчки.
+        ViewBag.AllOrders = allOrders; //Подава всички   поръчки към View-то през ViewBag. ViewBag е „чанта“ за допълнителни данни към View-то. Така View-то може да показва и публичен списък от поръчки.
         return View(myOrders);
     }
 
