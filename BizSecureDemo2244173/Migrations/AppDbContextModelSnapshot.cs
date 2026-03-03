@@ -34,6 +34,12 @@ namespace BizSecureDemo2244173.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("FailedLogins")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("LockoutUntilUtc")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

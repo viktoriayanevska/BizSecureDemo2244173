@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BizSecureDemo2244173.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260217210033_TitleBackTo80")]
-    partial class TitleBackTo80
+    [Migration("20260303222808_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,6 +36,12 @@ namespace BizSecureDemo2244173.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("FailedLogins")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("LockoutUntilUtc")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
