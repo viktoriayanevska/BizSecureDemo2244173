@@ -14,6 +14,7 @@
                 @if (User.Identity?.IsAuthenticated ?? false)
                 {
                     <a class="btn btn-outline-light btn-sm" asp-controller="Home" asp-action="Index">Landing</a>
+                    <a class="btn btn-outline-light btn-sm" asp-controller="Search" asp-action="Index">Search</a>
                     <a class="btn btn-outline-light btn-sm" asp-controller="Account" asp-action="Logout">Logout</a>
                 }
                 else

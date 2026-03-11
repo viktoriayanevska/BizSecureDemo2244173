@@ -1,0 +1,12 @@
+﻿@model List<BizSecureDemo.Models.Order>
+
+<h4>Search results</h4>
+
+<ul class="list-group">
+    @foreach (var o in Model)
+    {
+        <li class="list-group-item">
+            #@o.Id - @o.Title
+        </li>
+    }
+</ul>
