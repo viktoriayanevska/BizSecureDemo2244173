@@ -1,0 +1,37 @@
+﻿@model BizSecureDemo.ViewModels.ReplayDemoVm
+@{
+    ViewData["Title"] = "Replay Attack Demo";
+}
+<div class="alert alert-info">
+    <strong>Current balance:</strong> @Model.Balance
+</div>
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <div class="alert alert-warning">
+        @Model.Message
+    </div>
+}
+<h4>Withdraw demo action</h4>
+<form asp-action="Withdraw" method="post">
+    @Html.AntiForgeryToken()
+    <div class="mb-3">
+        <label>User ID</label>
+        <input asp-for="UserId" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Amount</label>
+        <input asp-for="Amount" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Token</label>
+        <input class="form-control" value="@Model.Token" readonly />
+        <input asp-for="Token" type="hidden" />
+    </div>
+    <input type="hidden" name="Nonce" value="@Model.Nonce" />
+    <button type="submit" class="btn btn-danger">Withdraw</button>
+</form>
+<hr />
+<form asp-action="Reset" method="post">
+    @Html.AntiForgeryToken()
+    <button class="btn btn-secondary">Reset balance</button>
+</form>
